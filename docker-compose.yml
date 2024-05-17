@@ -8,6 +8,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "8000:8000"
+    networks:
+      - local
 
   db:
     image: postgres
@@ -29,6 +31,8 @@ services:
   nginx:
     image: nginx
     container_name: web_nginx
+    networks:
+      - local
     ports:
       - "80:80"
     volumes:
@@ -41,3 +45,6 @@ services:
 volumes:
   yacht:
   db_data:
+
+networks:
+  local:
